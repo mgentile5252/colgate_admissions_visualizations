@@ -1,0 +1,2 @@
+# colgate_admissions_visualizations
+Create explorative visualizations from Colgate admissions data scraped from pdf files availible at colgate_admissions_visualizations
