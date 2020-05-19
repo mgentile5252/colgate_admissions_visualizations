@@ -13,8 +13,10 @@ library(shiny)
 library(rvest)
 library(stringr)
 library(tidyverse)
+library(shinythemes)
 
 shinyUI(fluidPage(
+      theme = shinytheme("superhero"),
   
   # Application title
   title = "College Admission Data Visualizations",
@@ -72,13 +74,14 @@ name correctly, use proper capitalization, and separate multiple schools with a 
                                         "Lehigh University" =  "Lehigh University",
                                         "Loyola University Maryland" = "Loyola University Maryland"
                                   )
-               )
+               ),
+               textInput("text_college", "Add Common Application School(s) To Selection (separated by comma):")
                
                #actionButton("add_school", "Add School to Selection!")
               
         ),
         column(4,
-               textInput("text_college", "Add Common Application School(s) To Selection (separated by comma):"),
+               
                actionButton("make_list", "Update Selected Schools!",style='padding:22.5px; font-size:150%')
                
         )
