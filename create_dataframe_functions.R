@@ -134,15 +134,20 @@ build_info_df <- function(info_char, school_name){
 ################################################################################################
 ################################################################################################
 
-# example usage: 
+check_school <- function(school_name, schools_list){
+      
+      result = FALSE
+      
+      if(school_name %in%  schools_list){
+            result = TRUE
+      }
+      
+      return(result)
+}
 
-# create list of schools: Williams College, Amherst College, Tufts University
-
-# make list of urls:
-# url_list <- make_urls(p1, school_list, p2)
 
 
-# college
+
 
 
 
