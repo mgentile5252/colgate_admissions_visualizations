@@ -32,12 +32,17 @@ shinyServer(function(input, output) {
                         str_remove_all("\r\n") %>%
                         trimws()
                   
-                  if(check_school(new_school, common_app_schools)){
+                  inputted_schools <- unlist(strsplit(new_school, ", "))
+                                             
+                  if(check_school(inputted_schools, common_app_schools)){
+
+                        current_schools <- c(current_schools, inputted_schools)
                         
-                        current_schools <- c(current_schools, new_school)
                   } else{
+                        
                         showNotification("Please make sure to enter the proper school name with correct capitlization (e.g. Williams College, Duke University)",
                                          type = "error")
+                        
                   }
             }
                
