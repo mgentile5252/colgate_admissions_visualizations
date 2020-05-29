@@ -134,11 +134,21 @@ build_info_df <- function(info_char, school_name){
 ################################################################################################
 ################################################################################################
 
-check_school <- function(school_name, schools_list){
+check_school <- function(school_name){
+      
+      
+      list_url <- "https://www.collegedata.com/en/prepare-and-apply/common-application-guide/"
+      list_html <- read_html(list_url)
+      common_app_schools <- list_html %>%
+            html_nodes(".t-title__details") %>%
+            html_text() %>%
+            str_remove_all("\r\n") %>%
+            trimws()
+      
       
       result = FALSE
       
-      if(school_name %in%  schools_list){
+      if(school_name %in%  common_app_schools){
             result = TRUE
       }
       

@@ -22,26 +22,23 @@ shinyServer(function(input, output) {
            
             
             new_school <- input$text_college
-            
+           
             if (new_school != ""){
-                  list_url <- "https://www.collegedata.com/en/prepare-and-apply/common-application-guide/"
-                  list_html <- read_html(list_url)
-                  common_app_schools <- list_html %>%
-                        html_nodes(".t-title__details") %>%
-                        html_text() %>%
-                        str_remove_all("\r\n") %>%
-                        trimws()
+                  
                   
                   inputted_schools <- unlist(strsplit(new_school, ", "))
+                  print(inputted_schools)
+                  
+                  check_list <- map(inputted_schools,check_school)
+                  print(check_list)
                                              
-                  if(check_school(inputted_schools, common_app_schools)){
-
-                        current_schools <- c(current_schools, inputted_schools)
+                  if(FALSE %in% check_list){
+                        showNotification("Please make sure to enter the proper school name with correct capitlization (e.g. Williams College, Duke University)",
+                                         type = "error")
                         
                   } else{
                         
-                        showNotification("Please make sure to enter the proper school name with correct capitlization (e.g. Williams College, Duke University)",
-                                         type = "error")
+                        current_schools <- c(current_schools, inputted_schools)
                         
                   }
             }
